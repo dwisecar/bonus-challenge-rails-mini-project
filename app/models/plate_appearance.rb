@@ -21,4 +21,9 @@ class PlateAppearance < ApplicationRecord
         rand = rand(1000)
         pset.reject {|k, v| rand > v }.min_by {|k,v|v}.first.upcase
     end
+
+    def on_base?
+        odds_b = @batter.obp / (@batter.obp - 1) * -1
+        odds_p = @pitcher.obp / (@pitcher.obp - 1) * -1
+        odds = (odds_b * odds_p)
 end
