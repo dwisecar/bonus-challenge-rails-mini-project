@@ -23,7 +23,35 @@ class PlateAppearance < ApplicationRecord
     end
 
     def on_base?
+        league_obp = 0.323
         odds_b = @batter.obp / (@batter.obp - 1) * -1
         odds_p = @pitcher.obp / (@pitcher.obp - 1) * -1
-        odds = (odds_b * odds_p)
+        odds = ((odds_b * odds_p) / league_obp) * 1000
+        rand(1000) < odds ? true : false
+    end
+
+    def safe_outcome
+        if walk?
+            outcome = "BB"
+        else
+            if single?
+                outcome = "single"
+            else
+                if double?
+                    outcome = 'double'
+                else
+                    if triple?
+                        outcome = 'triple'
+                    else 
+                        outcome = 'homerun'
+                    end
+                end
+            end
+        end
+    end
+
+    def out_outcome
+
+    end
+
 end

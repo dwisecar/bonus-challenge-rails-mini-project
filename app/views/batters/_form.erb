@@ -1,8 +1,6 @@
 <%= form_for @batter do |f|%>
-    <p><%= f.label 'Batter Team:'%></p>
-    <%= f.collection_select(:team_id, Team.all, :id, :name) %><br>
 
-    <p><%= f.label 'Batter Name:'%></p>
+    <p><%= f.label 'Pitcher Name:'%></p>
     <%= f.text_field :name %><br>
 
     <p><%= f.label 'Batter Tier:'%></p>
